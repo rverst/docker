@@ -11,10 +11,11 @@ You can add more folders and map them as you prefer.
 Example usage:
 
 ```
+$ docker pull syncthing/syncthing
 $ docker run -p 8384:8384 -p 22000:22000 \
     -v /wherever/st-cfg:/var/syncthing/config \
     -v /wherever/st-sync:/var/syncthing/Sync \
-    syncthing:latest
+    syncthing/syncthing:latest
 ```
 
 ## License
