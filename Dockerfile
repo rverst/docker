@@ -8,7 +8,7 @@ RUN echo 'syncthing:x:1000:1000::/var/syncthing:/sbin/nologin' >> /etc/passwd \
 RUN apk add --update curl && \
     rm -rf /var/cache/apk/*
 
-ENV release=v0.14.31
+ENV release=v0.14.32
 RUN mkdir /syncthing \
     && cd /syncthing \
     && curl -s -L https://github.com/syncthing/syncthing/releases/download/${release}/syncthing-linux-amd64-${release}.tar.gz \
