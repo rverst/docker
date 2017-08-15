@@ -8,9 +8,12 @@ RUN echo 'syncthing:x:1000:1000::/var/syncthing:/sbin/nologin' >> /etc/passwd \
 RUN apk add --update curl jq && \
     rm -rf /var/cache/apk/*
 
-RUN mkdir /syncthing \
+ENV release=
+
+RUN set -x \
+    && mkdir /syncthing \
     && cd /syncthing \
-    && release=$(curl -s https://api.github.com/repos/syncthing/syncthing/releases/latest | jq -r .tag_name ) \
+    && release=${release:-$(curl -s https://api.github.com/repos/syncthing/syncthing/releases/latest | jq -r .tag_name )} \
     && curl -s -L https://github.com/syncthing/syncthing/releases/download/${release}/syncthing-linux-amd64-${release}.tar.gz \
     | tar -zx \
     && mv syncthing-linux-amd64-${release}/syncthing . \
