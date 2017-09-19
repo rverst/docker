@@ -8,7 +8,7 @@ RUN echo 'syncthing:x:1000:1000::/var/syncthing:/sbin/nologin' >> /etc/passwd \
 RUN apk add --update curl jq && \
     rm -rf /var/cache/apk/*
 
-ENV release=
+ENV release="v0.14.38"
 
 RUN set -x \
     && mkdir /syncthing \
