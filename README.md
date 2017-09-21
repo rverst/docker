@@ -1,10 +1,11 @@
-# Containerized Syncthing
+# Docker Container for Syncthing
 
-Syncthing in a container. Combine with volumes. The exposed volumes are
-by default:
+Run Syncthing in a container. Combine with volumes to have the synchronized files available on the host.
 
- - /var/syncthing/config - the configuration and index directory
- - /var/syncthing/Sync - the default folder
+The exposed volumes are by default:
+
+    /var/syncthing/config   - the configuration and index directory into the Container
+    /var/syncthing          - the default sync folder into the Container
 
 You can add more folders and map them as you prefer.
 
@@ -14,7 +15,7 @@ Example usage:
 $ docker pull syncthing/syncthing
 $ docker run -p 8384:8384 -p 22000:22000 \
     -v /wherever/st-cfg:/var/syncthing/config \
-    -v /wherever/st-sync:/var/syncthing/Sync \
+    -v /wherever/st-sync:/var/syncthing \
     syncthing/syncthing:latest
 ```
 
@@ -28,7 +29,7 @@ To allow local discovery, the docker host network can be used instead:
 $ docker pull syncthing/syncthing
 $ docker run --network=host \
     -v /wherever/st-cfg:/var/syncthing/config \
-    -v /wherever/st-sync:/var/syncthing/Sync \
+    -v /wherever/st-sync:/var/syncthing \
     syncthing/syncthing:latest
 ```
 
@@ -40,4 +41,3 @@ there are conflicts.
 
 The things in this repository are licensed under the MIT license.
 Syncthing is distributed under Syncthing's own licensing.
-
