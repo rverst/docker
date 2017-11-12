@@ -25,4 +25,8 @@ RUN set -x \
 
 USER syncthing
 ENV STNOUPGRADE=1
+
+HEALTHCHECK --interval=1m --timeout=10s \
+  CMD nc -z localhost 22000 || exit 1
+
 ENTRYPOINT ["/syncthing/syncthing", "-home", "/var/syncthing/config", "-gui-address", "0.0.0.0:8384"]
