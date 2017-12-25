@@ -8,7 +8,7 @@ RUN echo 'syncthing:x:1000:1000::/var/syncthing:/sbin/nologin' >> /etc/passwd \
 RUN apk add --no-cache curl jq gnupg \
     && gpg --keyserver keyserver.ubuntu.com --recv-key D26E6ED000654A3E
 
-ENV release=
+ENV release="v0.14.42"
 
 RUN set -x \
     && mkdir /syncthing \
