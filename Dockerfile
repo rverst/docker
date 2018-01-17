@@ -5,17 +5,16 @@ RUN echo 'syncthing:x:1000:1000::/var/syncthing:/sbin/nologin' >> /etc/passwd \
     && mkdir /var/syncthing \
     && chown syncthing /var/syncthing
 
+ENV release=
+
 RUN apk add --no-cache --virtual .deps \
          curl \
          gnupg \
          jq \
     && apk add --no-cache \
          ca-certificates \
-    && gpg --keyserver keyserver.ubuntu.com --recv-key D26E6ED000654A3E
-
-ENV release=
-
-RUN set -x \
+    && gpg --keyserver keyserver.ubuntu.com --recv-key D26E6ED000654A3E \
+    && set -x \
     && mkdir /syncthing \
     && cd /syncthing \
     && release=${release:-$(curl -s https://api.github.com/repos/syncthing/syncthing/releases/latest | jq -r .tag_name )} \
