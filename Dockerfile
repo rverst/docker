@@ -5,7 +5,7 @@ RUN echo 'syncthing:x:1000:1000::/var/syncthing:/sbin/nologin' >> /etc/passwd \
     && mkdir /var/syncthing \
     && chown syncthing /var/syncthing
 
-ENV release=
+ENV release="v0.14.44"
 
 RUN apk add --no-cache --virtual .deps \
          curl \
