@@ -1,9 +1,9 @@
 FROM alpine
 
-RUN echo 'syncthing:x:1000:1000::/var/syncthing:/sbin/nologin' >> /etc/passwd \
-    && echo 'syncthing:!::0:::::' >> /etc/shadow \
+RUN echo 'rverst:x:1000:1000::/var/syncthing:/sbin/nologin' >> /etc/passwd \
+    && echo 'rverst:!::0:::::' >> /etc/shadow \
     && mkdir /var/syncthing \
-    && chown syncthing /var/syncthing
+    && chown rverst /var/syncthing
 
 ENV release=
 
@@ -27,7 +27,7 @@ RUN apk add --no-cache --virtual .deps \
     && rm -rf syncthing-linux-amd64-${release} sha256sum.txt.asc syncthing-linux-amd64-${release}.tar.gz \
     && apk del .deps
 
-USER syncthing
+USER rverst
 ENV STNOUPGRADE=1
 
 HEALTHCHECK --interval=1m --timeout=10s \
